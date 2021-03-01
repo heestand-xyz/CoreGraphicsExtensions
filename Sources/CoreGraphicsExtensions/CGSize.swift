@@ -15,17 +15,17 @@ public extension CGSize {
         CGSize(width: lhs.width / rhs.width, height: lhs.height / rhs.height)
     }
     
-    static func += (lhs: CGSize, rhs: CGSize) -> CGSize {
-        CGSize(width: lhs.width + rhs.width, height: lhs.height + rhs.height)
+    static func += (lhs: inout CGSize, rhs: CGSize) {
+        lhs = CGSize(width: lhs.width + rhs.width, height: lhs.height + rhs.height)
     }
-    static func -= (lhs: CGSize, rhs: CGSize) -> CGSize {
-        CGSize(width: lhs.width - rhs.width, height: lhs.height - rhs.height)
+    static func -= (lhs: inout CGSize, rhs: CGSize) {
+        lhs = CGSize(width: lhs.width - rhs.width, height: lhs.height - rhs.height)
     }
-    static func *= (lhs: CGSize, rhs: CGSize) -> CGSize {
-        CGSize(width: lhs.width * rhs.width, height: lhs.height * rhs.height)
+    static func *= (lhs: inout CGSize, rhs: CGSize) {
+        lhs = CGSize(width: lhs.width * rhs.width, height: lhs.height * rhs.height)
     }
-    static func /= (lhs: CGSize, rhs: CGSize) -> CGSize {
-        CGSize(width: lhs.width / rhs.width, height: lhs.height / rhs.height)
+    static func /= (lhs: inout CGSize, rhs: CGSize) {
+        lhs = CGSize(width: lhs.width / rhs.width, height: lhs.height / rhs.height)
     }
     
 }
@@ -59,17 +59,17 @@ public extension CGSize {
         CGSize(width: lhs / rhs.width, height: lhs / rhs.height)
     }
     
-    static func += (lhs: CGSize, rhs: CGFloat) -> CGSize {
-        CGSize(width: lhs.width + rhs, height: lhs.height + rhs)
+    static func += (lhs: inout CGSize, rhs: CGFloat) {
+        lhs = CGSize(width: lhs.width + rhs, height: lhs.height + rhs)
     }
-    static func -= (lhs: CGSize, rhs: CGFloat) -> CGSize {
-        CGSize(width: lhs.width - rhs, height: lhs.height - rhs)
+    static func -= (lhs: inout CGSize, rhs: CGFloat) {
+        lhs = CGSize(width: lhs.width - rhs, height: lhs.height - rhs)
     }
-    static func *= (lhs: CGSize, rhs: CGFloat) -> CGSize {
-        CGSize(width: lhs.width * rhs, height: lhs.height * rhs)
+    static func *= (lhs: inout CGSize, rhs: CGFloat) {
+        lhs = CGSize(width: lhs.width * rhs, height: lhs.height * rhs)
     }
-    static func /= (lhs: CGSize, rhs: CGFloat) -> CGSize {
-        CGSize(width: lhs.width / rhs, height: lhs.height / rhs)
+    static func /= (lhs: inout CGSize, rhs: CGFloat) {
+        lhs = CGSize(width: lhs.width / rhs, height: lhs.height / rhs)
     }
     
 }
@@ -103,17 +103,17 @@ public extension CGSize {
         CGSize(width: lhs.x / rhs.width, height: lhs.y / rhs.height)
     }
     
-    static func += (lhs: CGSize, rhs: CGPoint) -> CGSize {
-        CGSize(width: lhs.width + rhs.x, height: lhs.height + rhs.y)
+    static func += (lhs: inout CGSize, rhs: CGPoint) {
+        lhs = CGSize(width: lhs.width + rhs.x, height: lhs.height + rhs.y)
     }
-    static func -= (lhs: CGSize, rhs: CGPoint) -> CGSize {
-        CGSize(width: lhs.width - rhs.x, height: lhs.height - rhs.y)
+    static func -= (lhs: inout CGSize, rhs: CGPoint) {
+        lhs = CGSize(width: lhs.width - rhs.x, height: lhs.height - rhs.y)
     }
-    static func *= (lhs: CGSize, rhs: CGPoint) -> CGSize {
-        CGSize(width: lhs.width * rhs.x, height: lhs.height * rhs.y)
+    static func *= (lhs: inout CGSize, rhs: CGPoint) {
+        lhs = CGSize(width: lhs.width * rhs.x, height: lhs.height * rhs.y)
     }
-    static func /= (lhs: CGSize, rhs: CGPoint) -> CGSize {
-        CGSize(width: lhs.width / rhs.x, height: lhs.height / rhs.y)
+    static func /= (lhs: inout CGSize, rhs: CGPoint) {
+        lhs = CGSize(width: lhs.width / rhs.x, height: lhs.height / rhs.y)
     }
     
 }
@@ -147,17 +147,17 @@ public extension CGSize {
         CGSize(width: lhs.dx / rhs.width, height: lhs.dy / rhs.height)
     }
     
-    static func += (lhs: CGSize, rhs: CGVector) -> CGSize {
-        CGSize(width: lhs.width + rhs.dx, height: lhs.height + rhs.dy)
+    static func += (lhs: inout CGSize, rhs: CGVector) {
+        lhs = CGSize(width: lhs.width + rhs.dx, height: lhs.height + rhs.dy)
     }
-    static func -= (lhs: CGSize, rhs: CGVector) -> CGSize {
-        CGSize(width: lhs.width - rhs.dx, height: lhs.height - rhs.dy)
+    static func -= (lhs: inout CGSize, rhs: CGVector) {
+        lhs = CGSize(width: lhs.width - rhs.dx, height: lhs.height - rhs.dy)
     }
-    static func *= (lhs: CGSize, rhs: CGVector) -> CGSize {
-        CGSize(width: lhs.width * rhs.dx, height: lhs.height * rhs.dy)
+    static func *= (lhs: inout CGSize, rhs: CGVector) {
+        lhs = CGSize(width: lhs.width * rhs.dx, height: lhs.height * rhs.dy)
     }
-    static func /= (lhs: CGSize, rhs: CGVector) -> CGSize {
-        CGSize(width: lhs.width / rhs.dx, height: lhs.height / rhs.dy)
+    static func /= (lhs: inout CGSize, rhs: CGVector) {
+        lhs = CGSize(width: lhs.width / rhs.dx, height: lhs.height / rhs.dy)
     }
     
 }

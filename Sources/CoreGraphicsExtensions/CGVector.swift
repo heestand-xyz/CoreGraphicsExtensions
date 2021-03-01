@@ -15,17 +15,17 @@ public extension CGVector {
         CGVector(dx: lhs.dx / rhs.dx, dy: lhs.dy / rhs.dy)
     }
     
-    static func += (lhs: CGVector, rhs: CGVector) -> CGVector {
-        CGVector(dx: lhs.dx + rhs.dx, dy: lhs.dy + rhs.dy)
+    static func += (lhs: inout CGVector, rhs: CGVector) {
+        lhs = CGVector(dx: lhs.dx + rhs.dx, dy: lhs.dy + rhs.dy)
     }
-    static func -= (lhs: CGVector, rhs: CGVector) -> CGVector {
-        CGVector(dx: lhs.dx - rhs.dx, dy: lhs.dy - rhs.dy)
+    static func -= (lhs: inout CGVector, rhs: CGVector) {
+        lhs = CGVector(dx: lhs.dx - rhs.dx, dy: lhs.dy - rhs.dy)
     }
-    static func *= (lhs: CGVector, rhs: CGVector) -> CGVector {
-        CGVector(dx: lhs.dx * rhs.dx, dy: lhs.dy * rhs.dy)
+    static func *= (lhs: inout CGVector, rhs: CGVector) {
+        lhs = CGVector(dx: lhs.dx * rhs.dx, dy: lhs.dy * rhs.dy)
     }
-    static func /= (lhs: CGVector, rhs: CGVector) -> CGVector {
-        CGVector(dx: lhs.dx / rhs.dx, dy: lhs.dy / rhs.dy)
+    static func /= (lhs: inout CGVector, rhs: CGVector) {
+        lhs = CGVector(dx: lhs.dx / rhs.dx, dy: lhs.dy / rhs.dy)
     }
     
 }
@@ -59,17 +59,17 @@ public extension CGVector {
         CGVector(dx: lhs / rhs.dx, dy: lhs / rhs.dy)
     }
     
-    static func += (lhs: CGVector, rhs: CGFloat) -> CGVector {
-        CGVector(dx: lhs.dx + rhs, dy: lhs.dy + rhs)
+    static func += (lhs: inout CGVector, rhs: CGFloat) {
+        lhs = CGVector(dx: lhs.dx + rhs, dy: lhs.dy + rhs)
     }
-    static func -= (lhs: CGVector, rhs: CGFloat) -> CGVector {
-        CGVector(dx: lhs.dx - rhs, dy: lhs.dy - rhs)
+    static func -= (lhs: inout CGVector, rhs: CGFloat) {
+        lhs = CGVector(dx: lhs.dx - rhs, dy: lhs.dy - rhs)
     }
-    static func *= (lhs: CGVector, rhs: CGFloat) -> CGVector {
-        CGVector(dx: lhs.dx * rhs, dy: lhs.dy * rhs)
+    static func *= (lhs: inout CGVector, rhs: CGFloat) {
+        lhs = CGVector(dx: lhs.dx * rhs, dy: lhs.dy * rhs)
     }
-    static func /= (lhs: CGVector, rhs: CGFloat) -> CGVector {
-        CGVector(dx: lhs.dx / rhs, dy: lhs.dy / rhs)
+    static func /= (lhs: inout CGVector, rhs: CGFloat) {
+        lhs = CGVector(dx: lhs.dx / rhs, dy: lhs.dy / rhs)
     }
     
 }
@@ -103,17 +103,17 @@ public extension CGVector {
         CGVector(dx: lhs.x / rhs.dx, dy: lhs.y / rhs.dy)
     }
     
-    static func += (lhs: CGVector, rhs: CGPoint) -> CGVector {
-        CGVector(dx: lhs.dx + rhs.x, dy: lhs.dy + rhs.y)
+    static func += (lhs: inout CGVector, rhs: CGPoint) {
+        lhs = CGVector(dx: lhs.dx + rhs.x, dy: lhs.dy + rhs.y)
     }
-    static func -= (lhs: CGVector, rhs: CGPoint) -> CGVector {
-        CGVector(dx: lhs.dx - rhs.x, dy: lhs.dy - rhs.y)
+    static func -= (lhs: inout CGVector, rhs: CGPoint) {
+        lhs = CGVector(dx: lhs.dx - rhs.x, dy: lhs.dy - rhs.y)
     }
-    static func *= (lhs: CGVector, rhs: CGPoint) -> CGVector {
-        CGVector(dx: lhs.dx * rhs.x, dy: lhs.dy * rhs.y)
+    static func *= (lhs: inout CGVector, rhs: CGPoint) {
+        lhs = CGVector(dx: lhs.dx * rhs.x, dy: lhs.dy * rhs.y)
     }
-    static func /= (lhs: CGVector, rhs: CGPoint) -> CGVector {
-        CGVector(dx: lhs.dx / rhs.x, dy: lhs.dy / rhs.y)
+    static func /= (lhs: inout CGVector, rhs: CGPoint) {
+        lhs = CGVector(dx: lhs.dx / rhs.x, dy: lhs.dy / rhs.y)
     }
     
 }
@@ -147,17 +147,17 @@ public extension CGVector {
         CGVector(dx: lhs.width / rhs.dx, dy: lhs.height / rhs.dy)
     }
     
-    static func += (lhs: CGVector, rhs: CGSize) -> CGVector {
-        CGVector(dx: lhs.dx + rhs.width, dy: lhs.dy + rhs.height)
+    static func += (lhs: inout CGVector, rhs: CGSize) {
+        lhs = CGVector(dx: lhs.dx + rhs.width, dy: lhs.dy + rhs.height)
     }
-    static func -= (lhs: CGVector, rhs: CGSize) -> CGVector {
-        CGVector(dx: lhs.dx - rhs.width, dy: lhs.dy - rhs.height)
+    static func -= (lhs: inout CGVector, rhs: CGSize) {
+        lhs = CGVector(dx: lhs.dx - rhs.width, dy: lhs.dy - rhs.height)
     }
-    static func *= (lhs: CGVector, rhs: CGSize) -> CGVector {
-        CGVector(dx: lhs.dx * rhs.width, dy: lhs.dy * rhs.height)
+    static func *= (lhs: inout CGVector, rhs: CGSize) {
+        lhs = CGVector(dx: lhs.dx * rhs.width, dy: lhs.dy * rhs.height)
     }
-    static func /= (lhs: CGVector, rhs: CGSize) -> CGVector {
-        CGVector(dx: lhs.dx / rhs.width, dy: lhs.dy / rhs.height)
+    static func /= (lhs: inout CGVector, rhs: CGSize) {
+        lhs = CGVector(dx: lhs.dx / rhs.width, dy: lhs.dy / rhs.height)
     }
     
 }
