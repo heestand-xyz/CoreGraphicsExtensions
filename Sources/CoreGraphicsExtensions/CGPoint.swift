@@ -30,6 +30,50 @@ public extension CGPoint {
     
 }
 
+// CGFloat
+public extension CGPoint {
+    
+    static func + (lhs: CGPoint, rhs: CGFloat) -> CGPoint {
+        CGPoint(x: lhs.x + rhs, y: lhs.y + rhs)
+    }
+    static func - (lhs: CGPoint, rhs: CGFloat) -> CGPoint {
+        CGPoint(x: lhs.x - rhs, y: lhs.y - rhs)
+    }
+    static func * (lhs: CGPoint, rhs: CGFloat) -> CGPoint {
+        CGPoint(x: lhs.x * rhs, y: lhs.y * rhs)
+    }
+    static func / (lhs: CGPoint, rhs: CGFloat) -> CGPoint {
+        CGPoint(x: lhs.x / rhs, y: lhs.y / rhs)
+    }
+    
+    static func + (lhs: CGFloat, rhs: CGPoint) -> CGPoint {
+        CGPoint(x: lhs + rhs.x, y: lhs + rhs.y)
+    }
+    static func - (lhs: CGFloat, rhs: CGPoint) -> CGPoint {
+        CGPoint(x: lhs - rhs.x, y: lhs - rhs.y)
+    }
+    static func * (lhs: CGFloat, rhs: CGPoint) -> CGPoint {
+        CGPoint(x: lhs * rhs.x, y: lhs * rhs.y)
+    }
+    static func / (lhs: CGFloat, rhs: CGPoint) -> CGPoint {
+        CGPoint(x: lhs / rhs.x, y: lhs / rhs.y)
+    }
+    
+    static func += (lhs: CGPoint, rhs: CGFloat) -> CGPoint {
+        CGPoint(x: lhs.x + rhs, y: lhs.y + rhs)
+    }
+    static func -= (lhs: CGPoint, rhs: CGFloat) -> CGPoint {
+        CGPoint(x: lhs.x - rhs, y: lhs.y - rhs)
+    }
+    static func *= (lhs: CGPoint, rhs: CGFloat) -> CGPoint {
+        CGPoint(x: lhs.x * rhs, y: lhs.y * rhs)
+    }
+    static func /= (lhs: CGPoint, rhs: CGFloat) -> CGPoint {
+        CGPoint(x: lhs.x / rhs, y: lhs.y / rhs)
+    }
+    
+}
+
 // CGVector
 public extension CGPoint {
     
@@ -59,8 +103,8 @@ public extension CGPoint {
         CGPoint(x: lhs.dx / rhs.x, y: lhs.dy / rhs.y)
     }
     
-    static func += (lhs: CGPoint, rhs: CGVector) -> CGPoint {
-        CGPoint(x: lhs.x + rhs.dx, y: lhs.y + rhs.dy)
+    static func += (lhs: inout CGPoint, rhs: CGVector) {
+        lhs = CGPoint(x: lhs.x + rhs.dx, y: lhs.y + rhs.dy)
     }
     static func -= (lhs: CGPoint, rhs: CGVector) -> CGPoint {
         CGPoint(x: lhs.x - rhs.dx, y: lhs.y - rhs.dy)

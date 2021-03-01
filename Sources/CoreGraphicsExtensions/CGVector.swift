@@ -30,6 +30,50 @@ public extension CGVector {
     
 }
 
+// CGFloat
+public extension CGVector {
+    
+    static func + (lhs: CGVector, rhs: CGFloat) -> CGVector {
+        CGVector(dx: lhs.dx + rhs, dy: lhs.dy + rhs)
+    }
+    static func - (lhs: CGVector, rhs: CGFloat) -> CGVector {
+        CGVector(dx: lhs.dx - rhs, dy: lhs.dy - rhs)
+    }
+    static func * (lhs: CGVector, rhs: CGFloat) -> CGVector {
+        CGVector(dx: lhs.dx * rhs, dy: lhs.dy * rhs)
+    }
+    static func / (lhs: CGVector, rhs: CGFloat) -> CGVector {
+        CGVector(dx: lhs.dx / rhs, dy: lhs.dy / rhs)
+    }
+    
+    static func + (lhs: CGFloat, rhs: CGVector) -> CGVector {
+        CGVector(dx: lhs + rhs.dx, dy: lhs + rhs.dy)
+    }
+    static func - (lhs: CGFloat, rhs: CGVector) -> CGVector {
+        CGVector(dx: lhs - rhs.dx, dy: lhs - rhs.dy)
+    }
+    static func * (lhs: CGFloat, rhs: CGVector) -> CGVector {
+        CGVector(dx: lhs * rhs.dx, dy: lhs * rhs.dy)
+    }
+    static func / (lhs: CGFloat, rhs: CGVector) -> CGVector {
+        CGVector(dx: lhs / rhs.dx, dy: lhs / rhs.dy)
+    }
+    
+    static func += (lhs: CGVector, rhs: CGFloat) -> CGVector {
+        CGVector(dx: lhs.dx + rhs, dy: lhs.dy + rhs)
+    }
+    static func -= (lhs: CGVector, rhs: CGFloat) -> CGVector {
+        CGVector(dx: lhs.dx - rhs, dy: lhs.dy - rhs)
+    }
+    static func *= (lhs: CGVector, rhs: CGFloat) -> CGVector {
+        CGVector(dx: lhs.dx * rhs, dy: lhs.dy * rhs)
+    }
+    static func /= (lhs: CGVector, rhs: CGFloat) -> CGVector {
+        CGVector(dx: lhs.dx / rhs, dy: lhs.dy / rhs)
+    }
+    
+}
+
 // CGPoint
 public extension CGVector {
     
