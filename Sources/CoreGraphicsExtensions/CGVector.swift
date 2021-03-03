@@ -2,6 +2,14 @@ import CoreGraphics
 
 public extension CGVector {
     
+    var point: CGPoint { CGPoint(x: dx, y: dy) }
+    
+    var size: CGSize { CGSize(width: dx, height: dy) }
+    
+}
+
+public extension CGVector {
+    
     static func + (lhs: CGVector, rhs: CGVector) -> CGVector {
         CGVector(dx: lhs.dx + rhs.dx, dy: lhs.dy + rhs.dy)
     }
