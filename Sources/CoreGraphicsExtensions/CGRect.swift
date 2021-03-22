@@ -1,6 +1,12 @@
 import CoreGraphics
 
 public extension CGRect {
+
+    var center: CGPoint { origin + size / 2 }
+
+}
+
+public extension CGRect {
     
     static func + (lhs: CGRect, rhs: CGRect) -> CGRect {
         CGRect(x: lhs.minX + rhs.minX, y: lhs.minY + rhs.minY, width: lhs.width + rhs.width, height: lhs.height + rhs.height)
