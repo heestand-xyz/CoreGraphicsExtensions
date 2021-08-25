@@ -2,9 +2,13 @@ import CoreGraphics
 
 public extension CGPoint {
     
-    var vector: CGVector { CGVector(dx: x, dy: y) }
+    @available(*, deprecated, renamed: "asVector")
+    var vector: CGVector { asVector }
+    var asVector: CGVector { CGVector(dx: x, dy: y) }
     
-    var size: CGSize { CGSize(width: x, height: y) }
+    @available(*, deprecated, renamed: "asSize")
+    var size: CGSize { asSize }
+    var asSize: CGSize { CGSize(width: x, height: y) }
     
 }
 

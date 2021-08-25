@@ -2,9 +2,13 @@ import CoreGraphics
 
 public extension CGSize {
     
-    var point: CGPoint { CGPoint(x: width, y: height) }
+    @available(*, deprecated, renamed: "asPoint")
+    var point: CGPoint { asPoint }
+    var asPoint: CGPoint { CGPoint(x: width, y: height) }
     
-    var vector: CGVector { CGVector(dx: width, dy: height) }
+    @available(*, deprecated, renamed: "asVector")
+    var vector: CGVector { asVector }
+    var asVector: CGVector { CGVector(dx: width, dy: height) }
     
 }
 
