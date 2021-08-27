@@ -40,6 +40,10 @@ public extension CGSize {
         lhs = CGSize(width: lhs.width / rhs.width, height: lhs.height / rhs.height)
     }
     
+    static prefix func - (value: CGSize) -> CGSize {
+        CGSize(width: -value.width, height: -value.height)
+    }
+    
 }
 
 // CGFloat

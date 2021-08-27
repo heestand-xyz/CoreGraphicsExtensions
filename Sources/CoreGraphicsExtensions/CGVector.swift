@@ -40,6 +40,10 @@ public extension CGVector {
         lhs = CGVector(dx: lhs.dx / rhs.dx, dy: lhs.dy / rhs.dy)
     }
     
+    static prefix func - (value: CGVector) -> CGVector {
+        CGVector(dx: -value.dx, dy: -value.dy)
+    }
+    
 }
 
 // CGFloat

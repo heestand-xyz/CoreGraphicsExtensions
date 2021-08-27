@@ -40,6 +40,10 @@ public extension CGPoint {
         lhs = CGPoint(x: lhs.x / rhs.x, y: lhs.y / rhs.y)
     }
     
+    static prefix func - (value: CGPoint) -> CGPoint {
+        CGPoint(x: -value.x, y: -value.y)
+    }
+    
 }
 
 // CGFloat
