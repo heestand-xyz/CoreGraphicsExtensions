@@ -13,5 +13,9 @@ public extension CGSize {
     var aspectRatio: CGFloat {
         width / height
     }
+    
+    var count: Int {
+        Int(width) * Int(height)
+    }
 }
 
