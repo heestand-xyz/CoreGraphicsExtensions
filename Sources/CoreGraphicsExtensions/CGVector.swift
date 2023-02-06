@@ -1,5 +1,13 @@
 import CoreGraphics
 
+extension CGVector: Hashable {
+    
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(dx)
+        hasher.combine(dy)
+    }
+}
+
 public extension CGVector {
     
     @available(*, deprecated, renamed: "asPoint")
