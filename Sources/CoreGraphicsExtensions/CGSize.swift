@@ -1,5 +1,10 @@
 import CoreGraphics
 
+extension CGSize {
+    
+    public static let one = CGSize(width: 1.0, height: 1.0)
+}
+
 extension CGSize: Hashable {
     
     public func hash(into hasher: inout Hasher) {
