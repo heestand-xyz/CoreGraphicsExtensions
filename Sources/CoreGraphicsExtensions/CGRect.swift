@@ -18,6 +18,43 @@ public extension CGRect {
 
 public extension CGRect {
     
+    mutating func combine(_ frame: CGRect) {
+        self = combined(frame)
+    }
+
+    func combined(_ frame: CGRect) -> CGRect {
+        CGRect(x: min(minX, frame.minX),
+               y: min(minY, frame.minY),
+               width: max(maxX, frame.maxX) - min(minX, frame.minX),
+               height: max(maxY, frame.maxY) - min(minY, frame.minY))
+    }
+}
+
+public extension CGRect? {
+    
+    mutating func combine(_ frame: CGRect) {
+        self = combined(frame)
+    }
+
+    func combined(_ frame: CGRect) -> CGRect {
+        guard let self else { return frame }
+        return self.combined(frame)
+    }
+}
+
+public extension CGRect {
+    
+    mutating func pad(_ padding: CGFloat) {
+        self = padded(padding)
+    }
+    
+    func padded(_ padding: CGFloat) -> CGRect {
+        CGRect(origin: origin - padding, size: size + padding * 2)
+    }
+}
+
+public extension CGRect {
+    
     static func + (lhs: CGRect, rhs: CGRect) -> CGRect {
         CGRect(x: lhs.minX + rhs.minX, y: lhs.minY + rhs.minY, width: lhs.width + rhs.width, height: lhs.height + rhs.height)
     }

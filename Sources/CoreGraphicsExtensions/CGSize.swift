@@ -12,6 +12,16 @@ extension CGSize: Hashable {
     }
 }
 
+public func min(_ lhs: CGSize, _ rhs: CGSize) -> CGSize {
+    CGSize(width: min(lhs.width, rhs.width),
+           height: min(lhs.height, rhs.height))
+}
+
+public func max(_ lhs: CGSize, _ rhs: CGSize) -> CGSize {
+    CGSize(width: max(lhs.width, rhs.width),
+           height: max(lhs.height, rhs.height))
+}
+
 public extension CGSize {
     
     @available(*, deprecated, renamed: "asPoint")
