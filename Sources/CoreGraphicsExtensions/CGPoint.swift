@@ -20,6 +20,16 @@ public extension CGPoint {
     
 }
 
+public func min(_ lhs: CGPoint, _ rhs: CGPoint) -> CGPoint {
+    CGPoint(x: min(lhs.x, rhs.x),
+            y: min(lhs.y, rhs.y))
+}
+
+public func max(_ lhs: CGPoint, _ rhs: CGPoint) -> CGPoint {
+    CGPoint(x: max(lhs.x, rhs.x),
+            y: max(lhs.y, rhs.y))
+}
+
 public extension CGPoint {
     
     static func + (lhs: CGPoint, rhs: CGPoint) -> CGPoint {
