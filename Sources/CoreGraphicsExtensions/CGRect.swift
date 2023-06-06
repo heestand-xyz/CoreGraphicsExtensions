@@ -1,5 +1,10 @@
 import CoreGraphics
 
+extension CGRect {
+    
+    public static let one = CGRect(origin: .zero, size: .one)
+}
+
 extension CGRect: Hashable {
     
     public func hash(into hasher: inout Hasher) {
