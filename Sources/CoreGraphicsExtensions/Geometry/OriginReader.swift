@@ -24,7 +24,7 @@ public struct OriginGeometry: View {
                 .onAppear {
                     origin = geometry.frame(in: coordinateSpace).origin
                 }
-                .onChange(of: geometry.frame(in: coordinateSpace).origin) { _, newOrigin in
+                .onChange(of: geometry.frame(in: coordinateSpace).origin) { newOrigin in
                     origin = newOrigin
                 }
         }
