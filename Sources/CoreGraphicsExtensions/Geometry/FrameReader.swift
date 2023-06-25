@@ -25,7 +25,7 @@ public struct FrameGeometry: View {
                 .onAppear {
                     frame = geometry.frame(in: coordinateSpace)
                 }
-                .onChange(of: geometry.frame(in: coordinateSpace)) { newFrame in
+                .onChange(of: geometry.frame(in: coordinateSpace)) { _, newFrame in
                     frame = newFrame
                 }
         }
