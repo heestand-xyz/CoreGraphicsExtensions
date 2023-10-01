@@ -19,8 +19,9 @@ public extension CGFloat {
     static var pixelsPerPoint: CGFloat {
         #if os(macOS)
         return NSScreen.main?.backingScaleFactor ?? 1.0
-        #elseif os(xrOS)
-        return 1.0
+        #elseif os(visionOS)
+        /// This number is a best guess at an average
+        return 3.0
         #else
         return UIScreen.main.scale
         #endif
