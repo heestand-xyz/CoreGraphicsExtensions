@@ -32,7 +32,12 @@ public struct SizeGeometry: View {
 @available(iOS 14, macOS 11, *)
 extension View {
     
+    @available(*, deprecated, renamed: "readGeometry(size:)")
     public func geometry(size: Binding<CGSize>) -> some View {
+        readGeometry(size: size)
+    }
+    
+    public func readGeometry(size: Binding<CGSize>) -> some View {
         background(SizeGeometry(size: size))
     }
 }

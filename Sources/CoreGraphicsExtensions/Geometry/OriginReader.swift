@@ -34,7 +34,12 @@ public struct OriginGeometry: View {
 @available(iOS 14, macOS 11, *)
 extension View {
     
+    @available(*, deprecated, renamed: "readGeometry(origin:in:)")
     public func geometry(origin: Binding<CGPoint>, in coordinateSpace: CoordinateSpace) -> some View {
+        readGeometry(origin: origin, in: coordinateSpace)
+    }
+    
+    public func readGeometry(origin: Binding<CGPoint>, in coordinateSpace: CoordinateSpace) -> some View {
         background(OriginGeometry(origin: origin, in: coordinateSpace))
     }
 }

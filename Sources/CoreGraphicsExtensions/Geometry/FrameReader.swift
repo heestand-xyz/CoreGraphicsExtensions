@@ -35,7 +35,12 @@ public struct FrameGeometry: View {
 @available(iOS 14, macOS 11, *)
 extension View {
     
+    @available(*, deprecated, renamed: "readGeometry(frame:in:)")
     public func geometry(frame: Binding<CGRect>, in coordinateSpace: CoordinateSpace) -> some View {
+        readGeometry(frame: frame, in: coordinateSpace)
+    }
+    
+    public func readGeometry(frame: Binding<CGRect>, in coordinateSpace: CoordinateSpace) -> some View {
         background(FrameGeometry(frame: frame, in: coordinateSpace))
     }
 }
