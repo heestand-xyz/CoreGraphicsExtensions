@@ -47,6 +47,18 @@ public extension CGRect? {
     }
 }
 
+public extension [CGRect] {
+    
+    var combined: CGRect? {
+        if isEmpty { return nil }
+        var combinedFrame: CGRect = first!
+        for frame in dropFirst() {
+            combinedFrame.combine(frame)
+        }
+        return combinedFrame
+    }
+}
+
 public extension CGRect {
     
     mutating func pad(_ padding: CGFloat) {
