@@ -37,6 +37,22 @@ extension View {
         readGeometry(size: size)
     }
     
+    public func readGeometry(width: Binding<CGFloat>) -> some View {
+        readGeometry(size: Binding<CGSize>(get: {
+            CGSize(width: width.wrappedValue, height: 1.0)
+        }, set: { newSize in
+            width.wrappedValue = newSize.width
+        }))
+    }
+    
+    public func readGeometry(height: Binding<CGFloat>) -> some View {
+        readGeometry(size: Binding<CGSize>(get: {
+            CGSize(width: 1.0, height: height.wrappedValue)
+        }, set: { newSize in
+            height.wrappedValue = newSize.height
+        }))
+    }
+    
     public func readGeometry(size: Binding<CGSize>) -> some View {
         background(SizeGeometry(size: size))
     }
