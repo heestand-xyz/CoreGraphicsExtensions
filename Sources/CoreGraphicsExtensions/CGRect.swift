@@ -5,6 +5,13 @@ extension CGRect {
     public static let one = CGRect(origin: .zero, size: .one)
 }
 
+extension CGRect {
+    
+    public init(center: CGPoint, size: CGSize) {
+        self.init(origin: center - size / 2, size: size)
+    }
+}
+
 extension CGRect: Hashable {
     
     public func hash(into hasher: inout Hasher) {
