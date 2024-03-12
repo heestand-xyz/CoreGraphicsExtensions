@@ -43,4 +43,10 @@ extension View {
     public func readGeometry(frame: Binding<CGRect>, in coordinateSpace: CoordinateSpace) -> some View {
         background(FrameGeometry(frame: frame, in: coordinateSpace))
     }
+    
+    public func readGeometry(center: Binding<CGPoint>, in coordinateSpace: CoordinateSpace) -> some View {
+        background(FrameGeometry(frame: Binding(get: { .zero }, set: { newFrame in
+            center.wrappedValue = newFrame.center
+        }), in: coordinateSpace))
+    }
 }
