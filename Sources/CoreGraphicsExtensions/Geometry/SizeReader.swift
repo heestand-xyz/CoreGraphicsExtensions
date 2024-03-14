@@ -37,6 +37,14 @@ extension View {
         readGeometry(size: size)
     }
     
+    public func readGeometry<T: Hashable>(widths: Binding<[T: CGFloat]>, id: T) -> some View {
+        readGeometry(width: Binding<CGFloat>(get: {
+            widths.wrappedValue[id] ?? .zero
+        }, set: { newWidth in
+            widths.wrappedValue[id] = newWidth
+        }))
+    }
+    
     public func readGeometry(width: Binding<CGFloat>) -> some View {
         readGeometry(size: Binding<CGSize>(get: {
             CGSize(width: width.wrappedValue, height: 1.0)
@@ -45,11 +53,27 @@ extension View {
         }))
     }
     
+    public func readGeometry<T: Hashable>(heights: Binding<[T: CGFloat]>, id: T) -> some View {
+        readGeometry(height: Binding<CGFloat>(get: {
+            heights.wrappedValue[id] ?? .zero
+        }, set: { newHeight in
+            heights.wrappedValue[id] = newHeight
+        }))
+    }
+    
     public func readGeometry(height: Binding<CGFloat>) -> some View {
         readGeometry(size: Binding<CGSize>(get: {
             CGSize(width: 1.0, height: height.wrappedValue)
         }, set: { newSize in
             height.wrappedValue = newSize.height
+        }))
+    }
+    
+    public func readGeometry<T: Hashable>(sizes: Binding<[T: CGSize]>, id: T) -> some View {
+        readGeometry(size: Binding<CGSize>(get: {
+            sizes.wrappedValue[id] ?? .zero
+        }, set: { newSize in
+            sizes.wrappedValue[id] = newSize
         }))
     }
     

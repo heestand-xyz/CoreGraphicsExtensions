@@ -40,8 +40,24 @@ extension View {
         readGeometry(frame: frame, in: coordinateSpace)
     }
     
+    public func readGeometry<T: Hashable>(frames: Binding<[T: CGRect]>, id: T, in coordinateSpace: CoordinateSpace) -> some View {
+        readGeometry(frame: Binding<CGRect>(get: {
+            frames.wrappedValue[id] ?? .zero
+        }, set: { newFrame in
+            frames.wrappedValue[id] = newFrame
+        }), in: coordinateSpace)
+    }
+    
     public func readGeometry(frame: Binding<CGRect>, in coordinateSpace: CoordinateSpace) -> some View {
         background(FrameGeometry(frame: frame, in: coordinateSpace))
+    }
+    
+    public func readGeometry<T: Hashable>(centers: Binding<[T: CGPoint]>, id: T, in coordinateSpace: CoordinateSpace) -> some View {
+        readGeometry(center: Binding<CGPoint>(get: {
+            centers.wrappedValue[id] ?? .zero
+        }, set: { newCenter in
+            centers.wrappedValue[id] = newCenter
+        }), in: coordinateSpace)
     }
     
     public func readGeometry(center: Binding<CGPoint>, in coordinateSpace: CoordinateSpace) -> some View {
