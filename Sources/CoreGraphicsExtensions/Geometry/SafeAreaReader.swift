@@ -22,6 +22,7 @@ public struct SafeArea: Equatable {
         self.frame = CGRect(origin: CGPoint(x: insets.leading, y: insets.top),
                             size: frame.size)
     }
+    public static let zero = SafeArea(frame: .zero, insets: EdgeInsets(top: 0.0, leading: 0.0, bottom: 0.0, trailing: 0.0))
     public static let one = SafeArea(frame: .one, insets: EdgeInsets(top: 1.0, leading: 1.0, bottom: 1.0, trailing: 1.0))
 }
 
