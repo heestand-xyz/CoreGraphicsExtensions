@@ -16,6 +16,10 @@ public extension CGFloat {
         pixelsPerPoint
     }
     
+    static var pointsPerPixel: CGFloat {
+        1.0 / pixelsPerPoint
+    }
+    
     static var pixelsPerPoint: CGFloat {
         #if os(macOS)
         return NSScreen.main?.backingScaleFactor ?? 1.0
