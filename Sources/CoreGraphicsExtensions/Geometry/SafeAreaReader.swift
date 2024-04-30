@@ -30,19 +30,26 @@ public struct SafeArea: Equatable {
 public struct SafeAreaGeometry: View {
     
     @Binding var safeArea: SafeArea
+    let timing: ReaderTiming
     
-    public init(safeArea: Binding<SafeArea>) {
+    public init(
+        safeArea: Binding<SafeArea>,
+        timing: ReaderTiming
+    ) {
         _safeArea = safeArea
+        self.timing = timing
     }
     
     public var body: some View {
         GeometryReader { geometry in
             Color.clear
                 .onAppear {
+                    guard timing.contains(.onAppear) else { return }
                     safeArea = SafeArea(frame: geometry.frame(in: .global),
                                         insets: geometry.safeAreaInsets)
                 }
                 .onChange(of: geometry.frame(in: .global)) { newFrame in
+                    guard timing.contains(.onChange) else { return }
                     safeArea = SafeArea(frame: newFrame,
                                         insets: geometry.safeAreaInsets)
                 }
@@ -53,7 +60,19 @@ public struct SafeAreaGeometry: View {
 @available(iOS 14, macOS 11, *)
 extension View {
     
-    public func readGeometry(safeArea: Binding<SafeArea>) -> some View {
-        background(SafeAreaGeometry(safeArea: safeArea))
+    public func readGeometry(
+        safeArea: Binding<SafeArea>,
+        timing: ReaderTiming = .always
+    ) -> some View {
+        background(SafeAreaGeometry(safeArea: safeArea, timing: timing))
+    }
+    
+    public func readGeometrySafeArea(
+        _ update: @escaping (SafeArea) -> (),
+        timing: ReaderTiming = .always
+    ) -> some View {
+        background(SafeAreaGeometry(safeArea: Binding(get: { .zero }, set: { newSafeArea in
+            update(newSafeArea)
+        }), timing: timing))
     }
 }
