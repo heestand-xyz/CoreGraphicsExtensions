@@ -10,6 +10,10 @@ extension CGRect {
     public init(center: CGPoint, size: CGSize) {
         self.init(origin: center - size / 2, size: size)
     }
+    
+    public init(minX: CGFloat, minY: CGFloat, maxX: CGFloat, maxY: CGFloat) {
+        self.init(x: minX, y: minY, width: maxX - minX, height: maxY - minY)
+    }
 }
 
 extension CGRect: @retroactive Hashable {
