@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+@available(*, deprecated)
 @available(iOS 14, macOS 11, *)
 public struct FrameGeometry: View {
     
@@ -44,19 +45,11 @@ extension View {
     
     // MARK: - Frame
     
-    @available(*, deprecated, renamed: "readGeometry(frame:in:)")
-    public func geometry(
-        frame: Binding<CGRect>,
-        in coordinateSpace: CoordinateSpace
-    ) -> some View {
-        readGeometry(frame: frame, in: coordinateSpace)
-    }
-    
+    @available(iOS 16.0, macOS 13.0, *)
     public func readGeometry<T: Hashable>(
         frames: Binding<[T: CGRect]>,
         id: T,
-        in coordinateSpace: CoordinateSpace,
-        timing: ReaderTiming = .always
+        in coordinateSpace: CoordinateSpace
     ) -> some View {
         readGeometry(frame: Binding<CGRect>(get: {
             frames.wrappedValue[id] ?? .zero
@@ -65,17 +58,31 @@ extension View {
         }), in: coordinateSpace)
     }
     
+    @available(*, deprecated, message: "Please use onGeometryChange")
     public func readGeometry(
         frame: Binding<CGRect>,
         in coordinateSpace: CoordinateSpace,
-        timing: ReaderTiming = .always
+        timing: ReaderTiming
     ) -> some View {
         background(FrameGeometry(frame: frame, in: coordinateSpace, timing: timing))
     }
     
+    @available(iOS 16.0, macOS 13.0, *)
+    public func readGeometry(
+        frame: Binding<CGRect>,
+        in coordinateSpace: CoordinateSpace
+    ) -> some View {
+        self.onGeometryChange(for: CGRect.self) { geometry in
+            geometry.frame(in: coordinateSpace)
+        } action: { newFrame in
+            frame.wrappedValue = newFrame
+        }
+    }
+    
+    @available(*, deprecated, message: "Please use onGeometryChange")
     public func readGeometryFrame(
         in coordinateSpace: CoordinateSpace,
-        timing: ReaderTiming = .always,
+        timing: ReaderTiming,
         _ update: @escaping (CGRect) -> ()
     ) -> some View {
         background(FrameGeometry(frame: Binding(get: { .zero }, set: { newFrame in
@@ -85,32 +92,46 @@ extension View {
     
     // MARK: - Center
     
+    @available(iOS 16.0, macOS 13.0, *)
     public func readGeometry<T: Hashable>(
         centers: Binding<[T: CGPoint]>,
         id: T,
-        in coordinateSpace: CoordinateSpace,
-        timing: ReaderTiming = .always
+        in coordinateSpace: CoordinateSpace
     ) -> some View {
         readGeometry(center: Binding<CGPoint>(get: {
             centers.wrappedValue[id] ?? .zero
         }, set: { newCenter in
             centers.wrappedValue[id] = newCenter
-        }), in: coordinateSpace, timing: timing)
+        }), in: coordinateSpace)
     }
     
+    @available(*, deprecated, message: "Please use onGeometryChange")
     public func readGeometry(
         center: Binding<CGPoint>,
         in coordinateSpace: CoordinateSpace,
-        timing: ReaderTiming = .always
+        timing: ReaderTiming
     ) -> some View {
         background(FrameGeometry(frame: Binding(get: { .zero }, set: { newFrame in
             center.wrappedValue = newFrame.center
         }), in: coordinateSpace, timing: timing))
     }
     
+    @available(iOS 16.0, macOS 13.0, *)
+    public func readGeometry(
+        center: Binding<CGPoint>,
+        in coordinateSpace: CoordinateSpace
+    ) -> some View {
+        self.onGeometryChange(for: CGPoint.self) { geometry in
+            geometry.frame(in: coordinateSpace).center
+        } action: { newCenter in
+            center.wrappedValue = newCenter
+        }
+    }
+    
+    @available(*, deprecated, message: "Please use onGeometryChange")
     public func readGeometryCenter(
         in coordinateSpace: CoordinateSpace,
-        timing: ReaderTiming = .always,
+        timing: ReaderTiming,
         _ update: @escaping (CGPoint) -> ()
     ) -> some View {
         background(FrameGeometry(frame: Binding(get: { .zero }, set: { newFrame in

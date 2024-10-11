@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+@available(*, deprecated)
 @available(iOS 14, macOS 11, *)
 public struct OriginGeometry: View {
     
@@ -44,19 +45,11 @@ extension View {
     
     // MARK: - Origin
     
-    @available(*, deprecated, renamed: "readGeometry(origin:in:)")
-    public func geometry(
-        origin: Binding<CGPoint>,
-        in coordinateSpace: CoordinateSpace
-    ) -> some View {
-        readGeometry(origin: origin, in: coordinateSpace)
-    }
-    
+    @available(iOS 16.0, macOS 13.0, *)
     public func readGeometry<T: Hashable>(
         origins: Binding<[T: CGPoint]>,
         id: T,
-        in coordinateSpace: CoordinateSpace,
-        timing: ReaderTiming = .always
+        in coordinateSpace: CoordinateSpace
     ) -> some View {
         readGeometry(origin: Binding<CGPoint>(get: {
             origins.wrappedValue[id] ?? .zero
@@ -65,17 +58,31 @@ extension View {
         }), in: coordinateSpace)
     }
     
+    @available(*, deprecated, message: "Please use onGeometryChange")
     public func readGeometry(
         origin: Binding<CGPoint>,
         in coordinateSpace: CoordinateSpace,
-        timing: ReaderTiming = .always
+        timing: ReaderTiming
     ) -> some View {
         background(OriginGeometry(origin: origin, in: coordinateSpace, timing: timing))
     }
+        
+    @available(iOS 16.0, macOS 13.0, *)
+    public func readGeometry(
+        origin: Binding<CGPoint>,
+        in coordinateSpace: CoordinateSpace
+    ) -> some View {
+        self.onGeometryChange(for: CGPoint.self) { geometry in
+            geometry.frame(in: coordinateSpace).origin
+        } action: { newOrigin in
+            origin.wrappedValue = newOrigin
+        }
+    }
     
+    @available(*, deprecated, message: "Please use onGeometryChange")
     public func readGeometryOrigin(
         in coordinateSpace: CoordinateSpace,
-        timing: ReaderTiming = .always,
+        timing: ReaderTiming,
         _ update: @escaping (CGPoint) -> ()
     ) -> some View {
         background(OriginGeometry(origin: Binding(get: { .zero }, set: { newOrigin in
@@ -85,23 +92,24 @@ extension View {
     
     // MARK: - X
     
+    @available(iOS 16.0, macOS 13.0, *)
     public func readGeometry<T: Hashable>(
         xs: Binding<[T: CGFloat]>,
         id: T,
-        in coordinateSpace: CoordinateSpace,
-        timing: ReaderTiming = .always
+        in coordinateSpace: CoordinateSpace
     ) -> some View {
         readGeometry(x: Binding<CGFloat>(get: {
             xs.wrappedValue[id] ?? .zero
         }, set: { newX in
             xs.wrappedValue[id] = newX
-        }), in: coordinateSpace, timing: timing)
+        }), in: coordinateSpace)
     }
     
+    @available(*, deprecated, message: "Please use onGeometryChange")
     public func readGeometry(
         x: Binding<CGFloat>,
         in coordinateSpace: CoordinateSpace,
-        timing: ReaderTiming = .always
+        timing: ReaderTiming
     ) -> some View {
         readGeometry(origin: Binding<CGPoint>(get: {
             CGPoint(x: x.wrappedValue, y: 0.0)
@@ -110,9 +118,22 @@ extension View {
         }), in: coordinateSpace, timing: timing)
     }
     
+    @available(iOS 16.0, macOS 13.0, *)
+    public func readGeometry(
+        x: Binding<CGFloat>,
+        in coordinateSpace: CoordinateSpace
+    ) -> some View {
+        self.onGeometryChange(for: CGFloat.self) { geometry in
+            geometry.frame(in: coordinateSpace).origin.x
+        } action: { newX in
+            x.wrappedValue = newX
+        }
+    }
+    
+    @available(*, deprecated, message: "Please use onGeometryChange")
     public func readGeometryX(
         in coordinateSpace: CoordinateSpace,
-        timing: ReaderTiming = .always,
+        timing: ReaderTiming,
         _ update: @escaping (CGFloat) -> ()
     ) -> some View {
         background(OriginGeometry(origin: Binding(get: { .zero }, set: { newOrigin in
@@ -122,23 +143,24 @@ extension View {
     
     // MARK: - Y
     
+    @available(iOS 16.0, macOS 13.0, *)
     public func readGeometry<T: Hashable>(
         ys: Binding<[T: CGFloat]>,
         id: T,
-        in coordinateSpace: CoordinateSpace,
-        timing: ReaderTiming = .always
+        in coordinateSpace: CoordinateSpace
     ) -> some View {
         readGeometry(y: Binding<CGFloat>(get: {
             ys.wrappedValue[id] ?? .zero
         }, set: { newY in
             ys.wrappedValue[id] = newY
-        }), in: coordinateSpace, timing: timing)
+        }), in: coordinateSpace)
     }
     
+    @available(*, deprecated, message: "Please use onGeometryChange")
     public func readGeometry(
         y: Binding<CGFloat>,
         in coordinateSpace: CoordinateSpace,
-        timing: ReaderTiming = .always
+        timing: ReaderTiming
     ) -> some View {
         readGeometry(origin: Binding<CGPoint>(get: {
             CGPoint(x: 0.0, y: y.wrappedValue)
@@ -147,9 +169,22 @@ extension View {
         }), in: coordinateSpace, timing: timing)
     }
     
+    @available(iOS 16.0, macOS 13.0, *)
+    public func readGeometry(
+        y: Binding<CGFloat>,
+        in coordinateSpace: CoordinateSpace
+    ) -> some View {
+        self.onGeometryChange(for: CGFloat.self) { geometry in
+            geometry.frame(in: coordinateSpace).origin.y
+        } action: { newY in
+            y.wrappedValue = newY
+        }
+    }
+    
+    @available(*, deprecated, message: "Please use onGeometryChange")
     public func readGeometryY(
         in coordinateSpace: CoordinateSpace,
-        timing: ReaderTiming = .always,
+        timing: ReaderTiming,
         _ update: @escaping (CGFloat) -> ()
     ) -> some View {
         background(OriginGeometry(origin: Binding(get: { .zero }, set: { newOrigin in

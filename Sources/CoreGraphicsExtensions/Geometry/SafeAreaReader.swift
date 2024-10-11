@@ -26,6 +26,7 @@ public struct SafeArea: Equatable {
     public static let one = SafeArea(frame: .one, insets: EdgeInsets(top: 1.0, leading: 1.0, bottom: 1.0, trailing: 1.0))
 }
 
+@available(*, deprecated)
 @available(iOS 14, macOS 11, *)
 public struct SafeAreaGeometry: View {
     
@@ -59,17 +60,31 @@ public struct SafeAreaGeometry: View {
 
 @available(iOS 14, macOS 11, *)
 extension View {
-    
+
+    @available(*, deprecated, message: "Please use onGeometryChange")
     public func readGeometry(
         safeArea: Binding<SafeArea>,
-        timing: ReaderTiming = .always
+        timing: ReaderTiming
     ) -> some View {
         background(SafeAreaGeometry(safeArea: safeArea, timing: timing))
     }
     
+    @available(iOS 16.0, macOS 13.0, *)
+    public func readGeometry(
+        safeArea: Binding<SafeArea>
+    ) -> some View {
+        self.onGeometryChange(for: SafeArea.self) { geometry in
+            SafeArea(frame: geometry.frame(in: .global),
+                     insets: geometry.safeAreaInsets)
+        } action: { newSafeArea in
+            safeArea.wrappedValue = newSafeArea
+        }
+    }
+    
+    @available(*, deprecated, message: "Please use onGeometryChange")
     public func readGeometrySafeArea(
         _ update: @escaping (SafeArea) -> (),
-        timing: ReaderTiming = .always
+        timing: ReaderTiming
     ) -> some View {
         background(SafeAreaGeometry(safeArea: Binding(get: { .zero }, set: { newSafeArea in
             update(newSafeArea)

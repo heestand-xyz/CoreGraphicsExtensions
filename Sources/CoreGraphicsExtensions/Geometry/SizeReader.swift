@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+@available(*, deprecated)
 @available(iOS 14, macOS 11, *)
 public struct SizeGeometry: View {
     
@@ -41,34 +42,40 @@ extension View {
     
     // MARK: - Size
     
-    @available(*, deprecated, renamed: "readGeometry(size:)")
-    public func geometry(
-        size: Binding<CGSize>
-    ) -> some View {
-        readGeometry(size: size)
-    }
-    
+    @available(iOS 16.0, macOS 13.0, *)
     public func readGeometry<T: Hashable>(
         sizes: Binding<[T: CGSize]>,
-        id: T,
-        timing: ReaderTiming = .always
+        id: T
     ) -> some View {
         readGeometry(size: Binding<CGSize>(get: {
             sizes.wrappedValue[id] ?? .zero
         }, set: { newSize in
             sizes.wrappedValue[id] = newSize
-        }), timing: timing)
+        }))
     }
     
+    @available(*, deprecated, message: "Please use onGeometryChange")
     public func readGeometry(
         size: Binding<CGSize>,
-        timing: ReaderTiming = .always
+        timing: ReaderTiming
     ) -> some View {
         background(SizeGeometry(size: size, timing: timing))
     }
     
+    @available(iOS 16.0, macOS 13.0, *)
+    public func readGeometry(
+        size: Binding<CGSize>
+    ) -> some View {
+        self.onGeometryChange(for: CGSize.self) { geometry in
+            geometry.size
+        } action: { newSize in
+            size.wrappedValue = newSize
+        }
+    }
+    
+    @available(*, deprecated, message: "Please use onGeometryChange")
     public func readGeometrySize(
-        timing: ReaderTiming = .always,
+        timing: ReaderTiming,
         _ update: @escaping (CGSize) -> ()
     ) -> some View {
         background(SizeGeometry(size: Binding(get: { .zero }, set: { newSize in
@@ -78,21 +85,22 @@ extension View {
     
     // MARK: - Width
     
+    @available(iOS 16.0, macOS 13.0, *)
     public func readGeometry<T: Hashable>(
         widths: Binding<[T: CGFloat]>,
-        id: T,
-        timing: ReaderTiming = .always
+        id: T
     ) -> some View {
         readGeometry(width: Binding<CGFloat>(get: {
             widths.wrappedValue[id] ?? .zero
         }, set: { newWidth in
             widths.wrappedValue[id] = newWidth
-        }), timing: timing)
+        }))
     }
     
+    @available(*, deprecated, message: "Please use onGeometryChange")
     public func readGeometry(
         width: Binding<CGFloat>,
-        timing: ReaderTiming = .always
+        timing: ReaderTiming
     ) -> some View {
         readGeometry(size: Binding<CGSize>(get: {
             CGSize(width: width.wrappedValue, height: 1.0)
@@ -101,8 +109,20 @@ extension View {
         }), timing: timing)
     }
     
+    @available(iOS 16.0, macOS 13.0, *)
+    public func readGeometry(
+        width: Binding<CGFloat>
+    ) -> some View {
+        self.onGeometryChange(for: CGFloat.self) { geometry in
+            geometry.size.width
+        } action: { newWidth in
+            width.wrappedValue = newWidth
+        }
+    }
+    
+    @available(*, deprecated, message: "Please use onGeometryChange")
     public func readGeometryWidth(
-        timing: ReaderTiming = .always,
+        timing: ReaderTiming,
         _ update: @escaping (CGFloat) -> ()
     ) -> some View {
         background(SizeGeometry(size: Binding(get: { .zero }, set: { newSize in
@@ -112,21 +132,22 @@ extension View {
     
     // MARK: - Height
     
+    @available(iOS 16.0, macOS 13.0, *)
     public func readGeometry<T: Hashable>(
         heights: Binding<[T: CGFloat]>,
-        id: T,
-        timing: ReaderTiming = .always
+        id: T
     ) -> some View {
         readGeometry(height: Binding<CGFloat>(get: {
             heights.wrappedValue[id] ?? .zero
         }, set: { newHeight in
             heights.wrappedValue[id] = newHeight
-        }), timing: timing)
+        }))
     }
     
+    @available(*, deprecated, message: "Please use onGeometryChange")
     public func readGeometry(
         height: Binding<CGFloat>,
-        timing: ReaderTiming = .always
+        timing: ReaderTiming
     ) -> some View {
         readGeometry(size: Binding<CGSize>(get: {
             CGSize(width: 1.0, height: height.wrappedValue)
@@ -135,8 +156,20 @@ extension View {
         }), timing: timing)
     }
     
+    @available(iOS 16.0, macOS 13.0, *)
+    public func readGeometry(
+        height: Binding<CGFloat>
+    ) -> some View {
+        self.onGeometryChange(for: CGFloat.self) { geometry in
+            geometry.size.height
+        } action: { newHeight in
+            height.wrappedValue = newHeight
+        }
+    }
+    
+    @available(*, deprecated, message: "Please use onGeometryChange")
     public func readGeometryHeight(
-        timing: ReaderTiming = .always,
+        timing: ReaderTiming,
         _ update: @escaping (CGFloat) -> ()
     ) -> some View {
         background(SizeGeometry(size: Binding(get: { .zero }, set: { newSize in
