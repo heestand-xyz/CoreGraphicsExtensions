@@ -30,6 +30,11 @@ public func max(_ lhs: CGPoint, _ rhs: CGPoint) -> CGPoint {
             y: max(lhs.y, rhs.y))
 }
 
+public func abs(_ point: CGPoint) -> CGPoint {
+    CGPoint(x: abs(point.x),
+            y: abs(point.y))
+}
+
 public extension CGPoint {
     
     static func + (lhs: CGPoint, rhs: CGPoint) -> CGPoint {

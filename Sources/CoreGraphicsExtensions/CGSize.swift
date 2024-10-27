@@ -23,6 +23,11 @@ public func max(_ lhs: CGSize, _ rhs: CGSize) -> CGSize {
            height: max(lhs.height, rhs.height))
 }
 
+public func abs(_ size: CGSize) -> CGSize {
+    CGSize(width: abs(size.width),
+           height: abs(size.height))
+}
+
 public extension CGSize {
     
     @available(*, deprecated, renamed: "asPoint")
