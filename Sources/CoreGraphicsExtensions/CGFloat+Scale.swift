@@ -20,7 +20,7 @@ public extension CGFloat {
     }
     
     @MainActor
-    static var pixelsPerPoint: CGFloat {
+    static let pixelsPerPoint: CGFloat = {
 #if os(macOS)
         NSScreen.main?.backingScaleFactor ?? 1.0
 #elseif os(watchOS)
@@ -31,6 +31,6 @@ public extension CGFloat {
 #else
         UIScreen.main.scale
 #endif
-    }
+    }()
 }
 
