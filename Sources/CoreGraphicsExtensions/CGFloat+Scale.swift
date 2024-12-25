@@ -23,13 +23,13 @@ public extension CGFloat {
     static var pixelsPerPoint: CGFloat {
 #if os(macOS)
         NSScreen.main?.backingScaleFactor ?? 1.0
-#elseif os(iOS)
-        UIScreen.main.scale
 #elseif os(watchOS)
         WKInterfaceDevice.current().screenScale
 #elseif os(visionOS)
         /// This number is a best guess at an average
         3.0
+#else
+        UIScreen.main.scale
 #endif
     }
 }
