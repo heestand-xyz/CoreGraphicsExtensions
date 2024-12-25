@@ -7,8 +7,7 @@
 
 import SwiftUI
 
-@available(iOS 14, macOS 11, *)
-public struct SafeArea: Equatable {
+public struct SafeArea: Equatable, Sendable {
     /// Size ignoring safe area
     public let size: CGSize
     /// Frame within safe area
@@ -27,7 +26,6 @@ public struct SafeArea: Equatable {
 }
 
 @available(*, deprecated)
-@available(iOS 14, macOS 11, *)
 public struct SafeAreaGeometry: View {
     
     @Binding var safeArea: SafeArea
@@ -58,7 +56,6 @@ public struct SafeAreaGeometry: View {
     }
 }
 
-@available(iOS 14, macOS 11, *)
 extension View {
 
     @available(*, deprecated, message: "Please use onGeometryChange")
@@ -69,7 +66,6 @@ extension View {
         background(SafeAreaGeometry(safeArea: safeArea, timing: timing))
     }
     
-    @available(iOS 16.0, macOS 13.0, *)
     public func readGeometry(
         safeArea: Binding<SafeArea>
     ) -> some View {

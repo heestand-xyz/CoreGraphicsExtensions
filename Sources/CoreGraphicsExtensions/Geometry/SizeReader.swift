@@ -8,7 +8,6 @@
 import SwiftUI
 
 @available(*, deprecated)
-@available(iOS 14, macOS 11, *)
 public struct SizeGeometry: View {
     
     @Binding var size: CGSize
@@ -37,12 +36,10 @@ public struct SizeGeometry: View {
     }
 }
 
-@available(iOS 14, macOS 11, *)
 extension View {
     
     // MARK: - Size
     
-    @available(iOS 16.0, macOS 13.0, *)
     public func readGeometry<T: Hashable>(
         sizes: Binding<[T: CGSize]>,
         id: T
@@ -62,7 +59,6 @@ extension View {
         background(SizeGeometry(size: size, timing: timing))
     }
     
-    @available(iOS 16.0, macOS 13.0, *)
     public func readGeometry(
         size: Binding<CGSize>
     ) -> some View {
@@ -85,7 +81,6 @@ extension View {
     
     // MARK: - Width
     
-    @available(iOS 16.0, macOS 13.0, *)
     public func readGeometry<T: Hashable>(
         widths: Binding<[T: CGFloat]>,
         id: T
@@ -109,7 +104,6 @@ extension View {
         }), timing: timing)
     }
     
-    @available(iOS 16.0, macOS 13.0, *)
     public func readGeometry(
         width: Binding<CGFloat>
     ) -> some View {
@@ -132,7 +126,6 @@ extension View {
     
     // MARK: - Height
     
-    @available(iOS 16.0, macOS 13.0, *)
     public func readGeometry<T: Hashable>(
         heights: Binding<[T: CGFloat]>,
         id: T
@@ -156,7 +149,6 @@ extension View {
         }), timing: timing)
     }
     
-    @available(iOS 16.0, macOS 13.0, *)
     public func readGeometry(
         height: Binding<CGFloat>
     ) -> some View {

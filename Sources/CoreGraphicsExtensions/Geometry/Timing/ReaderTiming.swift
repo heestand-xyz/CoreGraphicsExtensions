@@ -7,7 +7,8 @@
 
 import Foundation
 
-public struct ReaderTiming: OptionSet {
+@available(*, deprecated, message: "Please use onGeometryChange")
+public struct ReaderTiming: OptionSet, Sendable {
     
     public let rawValue: Int
     

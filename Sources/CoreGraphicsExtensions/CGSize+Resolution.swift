@@ -6,10 +6,6 @@ import CoreGraphics
 
 public extension CGSize {
     
-    var resolution: CGSize {
-        self * .pixelsPerPoint
-    }
-    
     var aspectRatio: CGFloat {
         width / height
     }

@@ -3,32 +3,34 @@
 //
 
 import CoreGraphics
-#if os(macOS)
+#if canImport(AppKit)
 import AppKit
-#else
+#elseif canImport(UIKit)
 import UIKit
+#endif
+#if canImport(WatchKit)
+import WatchKit
 #endif
 
 public extension CGFloat {
    
-    @available(*, deprecated, renamed: "pixelsPerPoint")
-    static var scale: CGFloat {
-        pixelsPerPoint
-    }
-    
+    @MainActor
     static var pointsPerPixel: CGFloat {
         1.0 / pixelsPerPoint
     }
     
+    @MainActor
     static var pixelsPerPoint: CGFloat {
-        #if os(macOS)
-        return NSScreen.main?.backingScaleFactor ?? 1.0
-        #elseif os(visionOS)
+#if os(macOS)
+        NSScreen.main?.backingScaleFactor ?? 1.0
+#elseif os(iOS)
+        UIScreen.main.scale
+#elseif os(watchOS)
+        WKInterfaceDevice.current().screenScale
+#elseif os(visionOS)
         /// This number is a best guess at an average
-        return 3.0
-        #else
-        return UIScreen.main.scale
-        #endif
+        3.0
+#endif
     }
 }
 

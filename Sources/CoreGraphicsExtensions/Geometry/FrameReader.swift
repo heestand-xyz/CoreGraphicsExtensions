@@ -8,7 +8,6 @@
 import SwiftUI
 
 @available(*, deprecated)
-@available(iOS 14, macOS 11, *)
 public struct FrameGeometry: View {
     
     @Binding var frame: CGRect
@@ -40,12 +39,10 @@ public struct FrameGeometry: View {
     }
 }
 
-@available(iOS 14, macOS 11, *)
 extension View {
     
     // MARK: - Frame
     
-    @available(iOS 16.0, macOS 13.0, *)
     public func readGeometry<T: Hashable>(
         frames: Binding<[T: CGRect]>,
         id: T,
@@ -67,7 +64,6 @@ extension View {
         background(FrameGeometry(frame: frame, in: coordinateSpace, timing: timing))
     }
     
-    @available(iOS 16.0, macOS 13.0, *)
     public func readGeometry(
         frame: Binding<CGRect>,
         in coordinateSpace: CoordinateSpace
@@ -92,7 +88,6 @@ extension View {
     
     // MARK: - Center
     
-    @available(iOS 16.0, macOS 13.0, *)
     public func readGeometry<T: Hashable>(
         centers: Binding<[T: CGPoint]>,
         id: T,
@@ -116,7 +111,6 @@ extension View {
         }), in: coordinateSpace, timing: timing))
     }
     
-    @available(iOS 16.0, macOS 13.0, *)
     public func readGeometry(
         center: Binding<CGPoint>,
         in coordinateSpace: CoordinateSpace
