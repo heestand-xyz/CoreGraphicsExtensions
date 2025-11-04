@@ -55,14 +55,8 @@ extension View {
             SafeArea(size: geometry.size,
                      insets: geometry.safeAreaInsets)
         } action: { newSafeArea in
-            let isFirst: Bool = safeArea.wrappedValue == .zero || safeArea.wrappedValue == .one
-            if isFirst {
+            if safeArea.wrappedValue != newSafeArea {
                 safeArea.wrappedValue = newSafeArea
-            } else if safeArea.wrappedValue != newSafeArea {
-                // Freeze fix with one cycle delay for loop on device rotation
-                Task { @MainActor in
-                    safeArea.wrappedValue = newSafeArea
-                }
             }
         }
     }

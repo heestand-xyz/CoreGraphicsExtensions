@@ -71,7 +71,9 @@ extension View {
         self.onGeometryChange(for: CGPoint.self) { geometry in
             geometry.frame(in: coordinateSpace).origin
         } action: { newOrigin in
-            origin.wrappedValue = newOrigin
+            if origin.wrappedValue != newOrigin {
+                origin.wrappedValue = newOrigin
+            }
         }
     }
     
@@ -120,7 +122,9 @@ extension View {
         self.onGeometryChange(for: CGFloat.self) { geometry in
             geometry.frame(in: coordinateSpace).origin.x
         } action: { newX in
-            x.wrappedValue = newX
+            if x.wrappedValue != newX {
+                x.wrappedValue = newX
+            }
         }
     }
     
@@ -169,7 +173,9 @@ extension View {
         self.onGeometryChange(for: CGFloat.self) { geometry in
             geometry.frame(in: coordinateSpace).origin.y
         } action: { newY in
-            y.wrappedValue = newY
+            if y.wrappedValue != newY {
+                y.wrappedValue = newY
+            }
         }
     }
     
