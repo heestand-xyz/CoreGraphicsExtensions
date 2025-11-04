@@ -71,7 +71,9 @@ extension View {
         self.onGeometryChange(for: CGRect.self) { geometry in
             geometry.frame(in: coordinateSpace)
         } action: { newFrame in
-            frame.wrappedValue = newFrame
+            if frame.wrappedValue != newFrame {
+                frame.wrappedValue = newFrame
+            }
         }
     }
     
@@ -118,7 +120,9 @@ extension View {
         self.onGeometryChange(for: CGPoint.self) { geometry in
             geometry.frame(in: coordinateSpace).center
         } action: { newCenter in
-            center.wrappedValue = newCenter
+            if center.wrappedValue != newCenter {
+                center.wrappedValue = newCenter
+            }
         }
     }
     

@@ -65,7 +65,9 @@ extension View {
         self.onGeometryChange(for: CGSize.self) { geometry in
             geometry.size
         } action: { newSize in
-            size.wrappedValue = newSize
+            if size.wrappedValue != newSize {
+                size.wrappedValue = newSize
+            }
         }
     }
     
@@ -110,7 +112,9 @@ extension View {
         self.onGeometryChange(for: CGFloat.self) { geometry in
             geometry.size.width
         } action: { newWidth in
-            width.wrappedValue = newWidth
+            if width.wrappedValue != newWidth {
+                width.wrappedValue = newWidth
+            }
         }
     }
     
@@ -155,7 +159,9 @@ extension View {
         self.onGeometryChange(for: CGFloat.self) { geometry in
             geometry.size.height
         } action: { newHeight in
-            height.wrappedValue = newHeight
+            if height.wrappedValue != newHeight {
+                height.wrappedValue = newHeight
+            }
         }
     }
     
