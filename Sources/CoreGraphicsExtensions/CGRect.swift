@@ -1,4 +1,11 @@
 import CoreGraphics
+import Spatial
+
+extension CGRect {
+    public var in3D: Rect3D {
+        Rect3D(origin: origin.in3D, size: size.in3D)
+    }
+}
 
 extension CGRect {
     

@@ -1,4 +1,11 @@
 import CoreGraphics
+import Spatial
+
+extension CGVector {
+    public var in3D: Vector3D {
+        Vector3D(x: dx, y: dy, z: 0.0)
+    }
+}
 
 extension CGVector: @retroactive Hashable {
     

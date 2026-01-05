@@ -1,4 +1,11 @@
 import CoreGraphics
+import Spatial
+
+extension CGPoint {
+    public var in3D: Point3D {
+        Point3D(x: x, y: y, z: 0.0)
+    }
+}
 
 extension CGPoint: @retroactive Hashable {
     
