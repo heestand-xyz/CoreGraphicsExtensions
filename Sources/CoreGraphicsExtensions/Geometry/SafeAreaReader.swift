@@ -26,12 +26,11 @@ public struct SafeAreaGeometry: View {
             Color.clear
                 .onAppear {
                     guard timing.contains(.onAppear) else { return }
-                    safeArea = SafeArea(size: geometry.size,
-                                        insets: geometry.safeAreaInsets)
+                    safeArea = SafeArea(geometry: geometry)
                 }
                 .onChange(of: geometry.size) { newSize in
                     guard timing.contains(.onChange) else { return }
-                    safeArea = SafeArea(size: newSize,
+                    safeArea = SafeArea(insetSize: newSize,
                                         insets: geometry.safeAreaInsets)
                 }
         }
@@ -52,8 +51,7 @@ extension View {
         safeArea: Binding<SafeArea>
     ) -> some View {
         self.onGeometryChange(for: SafeArea.self) { geometry in
-            SafeArea(size: geometry.size,
-                     insets: geometry.safeAreaInsets)
+            SafeArea(geometry: geometry)
         } action: { newSafeArea in
             if safeArea.wrappedValue != newSafeArea {
                 safeArea.wrappedValue = newSafeArea
