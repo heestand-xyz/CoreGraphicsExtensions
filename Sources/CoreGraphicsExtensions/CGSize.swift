@@ -2,6 +2,12 @@ import CoreGraphics
 import Spatial
 
 extension CGSize {
+    public static func square(_ length: CGFloat) -> CGSize {
+        CGSize(width: length, height: length)
+    }
+}
+
+extension CGSize {
     public var in3D: Size3D {
         Size3D(width: width, height: height, depth: 0.0)
     }
