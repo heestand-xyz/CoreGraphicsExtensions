@@ -35,8 +35,10 @@ extension CGRect: @retroactive Hashable {
 
 public extension CGRect {
 
-    var center: CGPoint { origin + size / 2 }
-
+    var center: CGPoint {
+        get { origin + size / 2 }
+        set { origin = newValue - size / 2 }
+    }
 }
 
 public extension CGRect {
